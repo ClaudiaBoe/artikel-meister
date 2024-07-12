@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel-Meister</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        button { margin: 10px; padding: 10px; font-size: 16px; }
+        #word { font-size: 24px; margin: 20px; }
+        #score { font-size: 18px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Artikel-Meister</h1>
+    <div id="word"></div>
+    <button onclick="checkAnswer('der')">der</button>
+    <button onclick="checkAnswer('die')">die</button>
+    <button onclick="checkAnswer('das')">das</button>
+    <div id="score">Punkte: 0</div>
+
+    <script>
+        const words = [
+            {word: 'Apfel', article: 'der'},
+            {word: 'Banane', article: 'die'},
+            {word: 'Buch', article: 'das'},
+            // Fügen Sie hier weitere Wörter hinzu
+        ];
+
+        let currentWord;
+        let score = 0;
+
+        function newWord() {
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            document.getElementById('word').textContent = currentWord.word;
+        }
+
+        function checkAnswer(article) {
+            if (article === currentWord.article) {
+                score++;
+                alert('Richtig!');
+            } else {
+                alert('Falsch. Der richtige Artikel ist: ' + currentWord.article);
+            }
+            document.getElementById('score').textContent = 'Punkte: ' + score;
+            newWord();
+        }
+
+        newWord();
+    </script>
+</body>
+</html>
